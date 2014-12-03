@@ -5,8 +5,8 @@ MAINTAINER Jason Marshall <username@users.noreply.github.com>
 # update apt-get info
 RUN apt-get update
 
-# Install Java, Git, NPM
-RUN apt-get install -y --no-install-recommends openjdk-7-jdk git nodejs npm
+# Install Java, Git, Maven, NPM
+RUN apt-get install -y --no-install-recommends openjdk-7-jdk git maven nodejs npm
 RUN apt-get clean
 
 # Install an SSH server for jenkins slave
