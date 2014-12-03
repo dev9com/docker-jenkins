@@ -5,13 +5,13 @@ hub:
 firefox:
   image: "selenium/node-firefox-debug:latest"
   ports:
-    - "5950:5900"
+    - "5900"
   links:
     - hub
 chrome:
   image: "selenium/node-chrome-debug:latest"
   ports:
-    - "5960:5900"
+    - "5900"
   links:
     - hub
 jenkinsSlave:
