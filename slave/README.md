@@ -5,6 +5,7 @@ This is a Docker image configured to run as a Jenkins slave.
 
 It installs JDK 7, and the latest Node JS version on Ubuntu
 
+It can be run as part of the 'Jenkins in a Box' Fig configuration (see [parent Readme](../README.md)) or run independently.
 
 Configuration
 =============
@@ -24,18 +25,9 @@ In order for Jenkins to be able to use a slave, the public key for Jenkins needs
 
 ### Run the image
 
-    docker run -P -dt my_jenkins_slave:latest
-
-### Port number
-
-    docker ps
+    docker run -p 2222:22 -dt my_jenkins_slave:latest
     
-Look for:
-
-    PORTS
-    0.0.0.0:49197->22/tcp
-    
-Add this to the Advanced->Port field in the Node configuration
+Add port 2222 (or whatever you'd like it to be) to the Advanced->Port field in the Node configuration
 
 
 
