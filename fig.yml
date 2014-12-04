@@ -26,3 +26,12 @@ slave2:
     - "2122:22"
   links:
     - hub
+jenkins:
+  image: "jenkins:1.585"
+  ports:
+    - "8080:8080"
+  volumes: 
+    - ~/jenkins_home:/var/jenkins_home
+  links:
+    - slave1
+    - slave2
