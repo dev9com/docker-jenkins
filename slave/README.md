@@ -3,7 +3,7 @@ Intro
 
 This is a Docker image configured to run as a Jenkins slave.
 
-It installs JDK 7, and the latest Node JS version on Ubuntu
+It installs JDK 7, and the latest Node.js and Maven versions on Ubuntu
 
 It can be run as part of the 'Jenkins in a Box' Fig configuration (see [parent Readme](../README.md)) or run independently.
 
