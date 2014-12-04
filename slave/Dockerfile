@@ -1,6 +1,5 @@
-# Version: 0.0.1 1-Dev-2014
+# Version: 0.0.3 4-Dev-2014
 FROM ubuntu:latest
-MAINTAINER Jason Marshall <username@users.noreply.github.com>
 
 # update apt-get info
 RUN apt-get update
