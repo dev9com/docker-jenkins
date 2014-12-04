@@ -14,9 +14,15 @@ chrome:
     - "5960:5900"
   links:
     - hub
-jenkinsSlave:
-  image: "dev9com/jenkins_slave:latest"
+slave1:
+  build: '.'
   ports:
-    - "2222:22"
+    - "2022:22"
+  links:
+    - hub
+slave2:
+  build: '.'
+  ports:
+    - "2122:22"
   links:
     - hub
