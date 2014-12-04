@@ -15,13 +15,13 @@ chrome:
   links:
     - hub
 slave1:
-  build: '.'
+  build: 'slave'
   ports:
     - "2022:22"
   links:
     - hub
 slave2:
-  build: '.'
+  build: 'slave'
   ports:
     - "2122:22"
   links:
