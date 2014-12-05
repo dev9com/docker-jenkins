@@ -1,37 +1,24 @@
 hub:
-  image: "selenium/hub:latest"
+  image: 'selenium/hub:2.44.0'
   ports:
-    - "4444:4444"
-firefox:
-  image: "selenium/node-firefox-debug:2.44.0"
+    - '4444:4444'
+node:
+  build: 'node'
   ports:
-    - "5950:5900"
+    - '5900:5900'
   links:
     - hub
-chrome:
-  image: "selenium/node-chrome-debug:2.44.0"
-  ports:
-    - "5960:5900"
-  links:
-    - hub
-slave1:
+slave:
   build: 'slave'
   ports:
-    - "2022:22"
-  links:
-    - hub
-slave2:
-  build: 'slave'
-  ports:
-    - "2122:22"
+    - '2222:22'
   links:
     - hub
 jenkins:
-  image: "jenkins:1.585"
+  image: 'jenkins:1.585'
   ports:
-    - "8080:8080"
+    - '8080:8080'
   volumes:
     - ~/jenkins_home:/var/jenkins_home
   links:
-    - slave1
-    - slave2
+    - slave
