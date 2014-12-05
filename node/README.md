@@ -5,7 +5,7 @@ Selenium Node configured to run Firefox, Chrome, and remote Debug
 An amalgam of the very useful [docker images maintained by SeleniumHQ](https://github.com/SeleniumHQ/docker-selenium/).
 
 Where the SeleniumHQ images are intended to demonstrate large scale, parallel WebDriver testing, this image is intended
-a demonstration of a small scale Continuous Integration environment running on a single headless VM.
+as a demonstration of a small scale Continuous Integration environment running on a single headless VM.
 
 ## Rationale
 

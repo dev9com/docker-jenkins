@@ -35,14 +35,16 @@ running on 'master'.  You'll need to disable them and configure two new slaves.
 
 ### Add the Docker Slaves
 
-The 2 docker slaves respond to SSH requests on port 2022 and 2122 respectively.  If you're running boot2docker, they
-will be accessible at `192.168.59.103`
-
-TODO: These should be accessible on localhost,  figure out why it's not working.
-
+The docker slave responds to SSH requests on port 2222.  If you're running boot2docker, it will be accessible at 
+`192.168.59.103`
 
 ### Git 
 
 Remember that Git is not installed on Jenkins by default.  Go in and add the 'Git Plugin' and restart Jenkins
 
+### Boot2docker notes
 
+If you want your Jenkins to be visible on the network, it's a good idea to shut down boot2docker, use the VirtualBox
+administration console to turn on the 3rd ethernet interface and set it to the default (bridged).  This will cause the
+host computer to have two IP addresses, one that routes straight to the VM.  This will save you from having to set up
+port forwards for everything.
