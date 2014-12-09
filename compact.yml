@@ -3,18 +3,11 @@ hub:
   image: 'selenium/hub:2.44.0'
   ports:
     - '4444:4444'
-# Firefox image with VNC on port 5950
-firefox:
-  image: "selenium/node-firefox-debug:2.44.0"
+# In Selenium parlance a 'node' hosts the browser
+node:
+  build: 'node'
   ports:
-    - "5950:5900"
-  links:
-    - hub
-# Chrome image with VNC on port 5960
-chrome:
-  image: "selenium/node-chrome-debug:2.44.0"
-  ports:
-    - "5960:5900"
+    - '5900:5900'
   links:
     - hub
 # Jenkins slave.  SSH endpoint with some CLI tools installed
