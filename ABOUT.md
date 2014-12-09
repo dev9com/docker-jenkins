@@ -103,6 +103,10 @@ used for Phase 1 of a project, and should be a priority to eliminate this custom
     fig --file=compact.yml build
     fig --file=compact.yml up
     
+This version of the system peaked at a little under 4 GB of RAM.  With developer grade machines frequently having 16GB
+of RAM or more this becomes something you could actually run on someone's desktop for a while.  Or you could split it 
+and run it on 2 machines.
+
 ### Go bigger: Parallel tests
 
 One of the big reasons people run Selenium Grid is to run tests in parallel. One cool thing you can do with Fig is tell
