@@ -105,10 +105,10 @@ used for Phase 1 of a project, and should be a priority to eliminate this custom
 
 One of the big reasons people run Selenium Grid is to run tests in parallel. One cool thing you can do with Fig is tell
 it "I want you to run 4 copies of this image" by using the `fig scale` command, and it will spool them up.  The tradeoff
-is that at present it doesn't have a way to deal with fixed port numbers (there's no support for port ranges).  The 
-consequence is that every time you restart Fig, the ports tend to change. But watching a parallel test run over VNC
-would be challenging to say the least, in which case you might opt to not run VNC at all.  In that case you can save
-some resources by using the non-debug images 
+is that at present it doesn't have a way to deal with fixed port numbers (there's no support for port ranges) so you
+have to take out the port mappings (eg: "5950:5900" becomes "5900").  The consequence is that every time you restart
+Fig, the ports tend to change. But watching a parallel test run over VNC would be challenging to say the least, in which
+case you might opt to not run VNC at all.  In that case you can save some resources by using the non-debug images 
 
 
 
