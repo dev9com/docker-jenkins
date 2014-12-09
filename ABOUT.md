@@ -100,7 +100,9 @@ trouble with this is ongoing maintenance.  I've done my best to create the minim
 always a possibility that a new SeleniumHQ release won't be compatible.  For this reason I'd say this should only be
 used for Phase 1 of a project, and should be a priority to eliminate this custom image ASAP.
 
-
+    fig --file=compact.yml build
+    fig --file=compact.yml up
+    
 ### Go bigger: Parallel tests
 
 One of the big reasons people run Selenium Grid is to run tests in parallel. One cool thing you can do with Fig is tell
