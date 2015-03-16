@@ -13,6 +13,8 @@ We Spool up a Selenium environment using the Selenium Docker Images
  - 'nodes' for Chrome, Firefox with VNC access enabled (password: 'secret')
  - Selenium 'hub' to manage the nodes
 
+A more in-depth overview can be found in [the About file](ABOUT.md)
+
 Configuration
 =============
 
