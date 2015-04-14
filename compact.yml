@@ -1,19 +1,19 @@
 # Selenium Hub, which parcels out browsers to test runners
 hub:
   image: 'selenium/hub:2.44.0'
-  ports:
-    - '4444:4444'
+  expose:
+    - 4444
 # In Selenium parlance a 'node' hosts the browser
 node:
   build: 'node'
   ports:
-    - '5900:5900'
+    - 5900
   links:
     - hub
 # Jenkins slave.  SSH endpoint with some CLI tools installed
 slave:
   build: 'slave'
-  ports:
+  expose:
     - '2222:22'
   links:
     - hub

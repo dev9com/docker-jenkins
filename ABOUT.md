@@ -54,7 +54,7 @@ We need:
 
 Rather than modifying the Jenkins image, I opted to build a custom Jenkins Slave. Personally, I prefer not to run slaves
 on the Jenkins box.  First, the hardware budget for the two is very different. Slaves are IO, memory, and CPU bound.  The
-filesystem can be deleted between builds with few repurcussions.  The Jenkins server is a different beast.  It needs
+filesystem can be deleted between builds with few repercussions.  The Jenkins server is a different beast.  It needs
 to be backed up, it uses a lot disk space for artifacts (build statistics and test reports, even if you store your
 binaries in a system of record), and it needs some bandwidth.  There are many ways for a bad build to take out the
 entire server, and I would rather not even have to worry about it.  
@@ -62,27 +62,27 @@ entire server, and I would rather not even have to worry about it.
 Also it's probable you already have a Jenkins server, and it's easy enough to tweak this demo code to use it with your
 existing server without impacting your current operations.  
 
-## Fig to the rescue
+## docker-compose to the rescue
 
-Fig is a great Docker tool for wiring up a bunch of services to each other.  Since I know a lot of people who like to 
-poke at the build environment, I opted to write a Fig file where all of the ports are wired to fixed port numbers on 
-the host operating system.
+docker-compose (formerly Fig) is a great Docker tool for wiring up a bunch of services to each other.  Since I know a 
+lot of people who like to poke at the build environment, I opted to write a docker-compose file where all of the ports
+are wired to fixed port numbers on the host operating system.
 
-You'll need to install Fig of course (it's not part of the Docker install, or at least not yet), and you'll need to
-create a ~/jenkins_home directory which will contain all of the configuration for Jenkins, you'll need to generate an
-SSH key for Jenkins, and copy it into `authorized_keys` for the slave (see the [README.md] if you need help with that
-step).  Then you can just type in two magic little words:
+You'll need to install docker-compose of course (it's not part of the Docker install, or at least not yet), and you'll
+need to create a ~/jenkins_home directory which will contain all of the configuration for Jenkins, you'll need to 
+generate an SSH key for Jenkins, and copy it into `authorized_keys` for the slave (see the [README.md] if you need help
+with that step).  Then you can just type in two magic little words:
 
-    fig up
+    docker-compose up
 
 And after a few minutes of downloading and building images, You'll have a Jenkins environment running in a box.
 
 You'll have the following running (substitute 192.168.59.103 if you're running boot2docker)
 1. Jenkins on http://127.0.0.1:8080
-1. A Jenkins slave listening for SSH connections on 127.0.0.1:2222
+1. A Jenkins slave listening for SSH connections at slave:2222
 1. A virtual desktop running Firefox tests listening on 127.0.0.1:5950
 1. A virtual desktop running Chrome tests listening on 127.0.0.1:5960
-1. Selenium hub listening on port 4444 (behaving similarly to selenium-standalone)
+1. Selenium hub listening on hub:4444 (behaving similarly to selenium-standalone)
 
 ## Further Improvements
 
@@ -100,8 +100,8 @@ trouble with this is ongoing maintenance.  I've done my best to create the minim
 always a possibility that a new SeleniumHQ release won't be compatible.  For this reason I'd say this should only be
 used for Phase 1 of a project, and should be a priority to eliminate this custom image ASAP.
 
-    fig --file=compact.yml build
-    fig --file=compact.yml up
+    docker-compose --file=compact.yml build
+    docker-compose --file=compact.yml up
     
 This version of the system peaked at a little under 4 GB of RAM.  With developer grade machines frequently having 16GB
 of RAM or more this becomes something you could actually run on someone's desktop for a while.  Or you could split it 
@@ -109,19 +109,18 @@ and run it on 2 machines.
 
 ### Go bigger: Parallel tests
 
-One of the big reasons people run Selenium Grid is to run tests in parallel. One cool thing you can do with Fig is tell
-it "I want you to run 4 copies of this image" by using the `fig scale` command, and it will spool them up.  The tradeoff
-is that at present it doesn't have a way to deal with fixed port numbers (there's no support for port ranges) so you
-have to take out the port mappings (eg: "5950:5900" becomes "5900").  The consequence is that every time you restart
-Fig, the ports tend to change. But watching a parallel test run over VNC would be challenging to say the least, in which
-case you might opt to not run VNC at all.  In that case you can save some resources by using the non-debug images 
-
-
+One of the big reasons people run Selenium Grid is to run tests in parallel. One cool thing you can do with
+docker-compose is tell it "I want you to run 4 copies of this image" by using the `docker-compose scale` command, and it
+will spool them up.  The tradeoff is that at present it doesn't have a way to deal with fixed port numbers (there's no
+support for port ranges) so you have to take out the port mappings (eg: "5950:5900" becomes "5900").  The consequence is
+that every time you restart docker-compose, the ports tend to change. But watching a parallel test run over VNC would be
+challenging to say the least, in which case you might opt to not run VNC at all.  In that case you can save some
+resources by using the non-debug images
 
 
 # Examples and Further reading
 
-[fig.yml](fig.yml)
+[docker-compose.yml](docker-compose.yml)
 
 [compact.yml](compact.yml)
 
