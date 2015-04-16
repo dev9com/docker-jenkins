@@ -1,18 +1,18 @@
 # Selenium Hub, which parcels out browsers to test runners
 hub:
-  image: 'selenium/hub:2.44.0'
+  image: 'selenium/hub:2.45.0'
   expose:
     - 4444
 # Firefox image with VNC on port 5950
 firefox:
-  image: "selenium/node-firefox-debug:2.44.0"
+  image: "selenium/node-firefox-debug:2.45.0"
   ports:
     - "5950:5900"
   links:
     - hub
 # Chrome image with VNC on port 5960
 chrome:
-  image: "selenium/node-chrome-debug:2.44.0"
+  image: "selenium/node-chrome-debug:2.45.0"
   ports:
     - "5960:5900"
   links:
@@ -21,14 +21,14 @@ chrome:
 slave:
   build: 'slave'
   expose:
-    - 2222:22
+    - 22
   links:
     - hub
 # The Jenkins server.  See README for details on SSH certs for talking to the slave
 jenkins:
-  image: 'jenkins:1.585'
+  image: 'jenkins:1.596.2'
   ports:
-    - '8080:8080'
+    - 8080:8080
   volumes:
     - ~/jenkins_home:/var/jenkins_home
   links:
