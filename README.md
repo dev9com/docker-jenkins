@@ -22,9 +22,9 @@ In order for Jenkins to be able to use a slave, the public key for Jenkins needs
 
 As the user that will run the Fig scripts:
 
-* Create a directory called `~/jenkins_home`
+* Create a directory called `~/jenkins_home/.ssh`
 * Generate an SSH key
-    - `keygen -t rsa -C 'jenkins@example.com'`
+    - `ssh-keygen -t rsa -C 'jenkins@example.com'`
     - When prompted, save the files to `~/jenkins_home/.ssh/id_rsa`
 * Copy `~/jenkins_home/.ssh/id_rsa.pub` to `slave/ssh/authorized_keys`
 
