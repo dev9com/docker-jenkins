@@ -5,7 +5,7 @@ FROM ubuntu:latest
 RUN apt-get update
 
 # Install Java, Git, Maven, NPM
-RUN apt-get install -y --no-install-recommends openjdk-7-jdk git maven nodejs npm
+RUN apt-get install -y --no-install-recommends openjdk-7-jdk git maven nodejs nodejs-legacy npm 
 RUN apt-get clean
 
 # Install an SSH server for jenkins slave
